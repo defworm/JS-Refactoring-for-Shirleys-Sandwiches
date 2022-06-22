@@ -22,10 +22,10 @@ const cart = {
 
     // Creates a DIV to display a single sandwich
     createSandwichCard(sandwich) {
+        const {id, name, bread, ingredients} = sandwich;
         const sandwichCard = document.createElement('div');
         sandwichCard.className = cart.selectedSandwich.id === sandwich.id ? 'm-3 card border-primary' : 'm-3 card'
         sandwichCard.style.cursor = 'pointer';
-        const {id, name, bread, ingredients} = sandwich;
         sandwichCard.innerHTML = `
         <div class="card-body">
             <h5 class="card-title">${id}. ${name}</h5>
@@ -87,9 +87,7 @@ const cart = {
     // Runs when the user clicks 'Duplicate' on a sandwich card
     async duplicateSandwich(sandwich) {
         let newSandwich = {
-            name: sandwich.name,
-            bread: sandwich.bread,
-            ingredients: sandwich.ingredients
+            ...sandwich
         }
 
         // Save the sandwich on the server
